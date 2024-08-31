@@ -16,10 +16,10 @@ Inicio
         cont = cont + 1
     
     Si altitud = altitud mínima:
-    escribir("El satélite se estabilizó después de {cont} orbitas")
+    escribir("El satélite se estabilizó después de {cont} orbitas a una altitud de {altitud}")
 
     si no: 
-    escribir("El satélite reingresó después de {cont} orbitas")
+    escribir("El satélite reingresó después de {cont} orbitas a una altura de {altitud}")
     Fin si
 Fin
 ```
