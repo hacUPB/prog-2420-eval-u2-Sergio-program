@@ -1,18 +1,22 @@
 
-alt_inicial = float(input("Ingrese la altitud inicial del satélite: "))
-alt_minima = float(input("Ingrese la altitud mínima de orbita segura para el satélite: "))
+alt_inicial = float(input("Ingrese la altitud inicial del satélite (en Km): "))
+alt_minima = float(input("Ingrese la altitud mínima de orbita segura para el satélite (en Km): "))
 cd = float(input("Ingrese el coeficiente de drag del satélite: "))
 altitud = alt_inicial
 cont = 0
-    
-while altitud > alt_minima:
-    altitud *= cd
-    cd += 0.00000000001
-    cont += 1
-if altitud == alt_minima:
-        print(f"El satélite se estabilizó después de {cont} orbitas")
-else:
-        print(f"El satélite no logró estabilizarse después de {cont} orbitas, y reingresó a la atmosfera con una altitud de {altitud}")
+delta_alt = 0
 
+
+while altitud > alt_inicial or delta_alt < 100:
+    delta_alt = cd * alt_inicial
+    cd += 0.001
+    cont += 1
+
+if delta_alt < 100:
+    print("El satélite logró estabilizarse en órbita")
+altitud -= delta_alt
+print(f"El satélite reingresó despues de {cont} órbitas, a una altura de {altitud}")
+
+       
 
 
