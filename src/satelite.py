@@ -7,12 +7,12 @@ cont = 0
 delta_alt = 0
 
 
-while altitud > alt_inicial or delta_alt < 100:
+while altitud > alt_inicial or delta_alt > 10:
     delta_alt = cd * alt_inicial
     cd += 0.001
     cont += 1
 
-if delta_alt < 100:
+if delta_alt < 10:
     print("El satélite logró estabilizarse en órbita")
 altitud -= delta_alt
 print(f"El satélite reingresó despues de {cont} órbitas, a una altura de {altitud}")
