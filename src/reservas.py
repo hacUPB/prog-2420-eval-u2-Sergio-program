@@ -2,34 +2,36 @@ import random
 from os import system
 from datetime import datetime
 
+
 distancia = 0
-ciudades = ["Medellín", "Cartagena", "Bogotá"]
+ciudades = ["MDE", "CTG", "BOG"]
 dias = ["Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado", "Domingo"]
-asientos = ["Ventana", "Intermedio", "Pasillo", "Aleatorio"]
+asientos = ["V", "I", "P", "A"]
 adjetivos = ["Sr", "Sra"]
 
 fila = random.randint(1, 29)
 vuelo = random.randint(1111, 9999)
 
 while True:
-    adj = input("¿Es usted Sr. ó Sra. ?: ")
+    adj = input("¿Es usted Sr. ó Sra. ?: ").capitalize()
     if adj not in adjetivos:
         print("Revise la opción ingresada")
     else:
         break 
 
-nombre = input("Ingrese su nombre completo: ")
-print(f"{adj} {nombre} Bienvenido a FastFast Airlines")
+nombre = input("Ingrese su nombre: ").capitalize()
+apellido = input("Ingrese su apellido: ").capitalize()
+print(f"{adj} {nombre} {apellido} Bienvenido a FastFast Airlines")
 
 while True:
-    origen = input("Ingrese su ciudad de origen (Medellín, Bogotá, Cartagena): ")
+    origen = input("Ingrese su ciudad de origen (Medellín: MDE, Bogotá: BOG, Cartagena: CTG): ").upper()
     if origen not in ciudades:
         print("Ingrese una opción válida")
     else:
         break
 
 while True:
-    destino = input("Ingrese su ciudad de destino (Medellín, Bogotá, Cartagena): ")
+    destino = input("Ingrese su ciudad de destino (Medellín: MDE, Bogotá: BOG, Cartagena: CTG): ").upper()
     if destino not in ciudades:
         print("Ingrese una opción válida")
     else:
@@ -46,22 +48,25 @@ while True:
             break
     except ValueError:
         print("El formato de la fecha es incorrecto. Por favor, ingresa una fecha válida en el formato dd/mm/yyyy.")
+dia = fecha_actual.weekday()
 
-while True:
-    dia = input("Ingrese el día de la semana que viaja (Lunes, Martes, Miércoles, Jueves, Viernes, Sábado, Domingo): ")
-    if dia not in dias:
-        print("El día no es válido")
-    else:
-        break     
+dia =dias [dia] 
+
+#while True:
+    #dia = input("Ingrese el día de la semana que viaja (Lunes, Martes, Miércoles, Jueves, Viernes, Sábado, Domingo): ")
+    #if dia not in dias:
+        #print("El día no es válido")
+    #else:
+        #break     
 
 # Determinar la distancia entre origen y destino
-if origen == "Bogotá" and destino == "Medellín":
+if origen == "BOG" and destino == "MDE":
     distancia = 1
-elif origen == "Medellín" and destino == "Bogotá":
+elif origen == "MDE" and destino == "BOG":
     distancia = 1
-elif (origen == "Bogotá" and destino == "Cartagena") or (origen == "Cartagena" and destino == "Bogotá"):
+elif (origen == "BOG" and destino == "CTG") or (origen == "CTG" and destino == "BOG"):
     distancia = 2
-elif (origen == "Medellín" and destino == "Cartagena") or (origen == "Cartagena" and destino == "Medellín"):
+elif (origen == "MDE" and destino == "CTG") or (origen == "CTG" and destino == "MDE"):
     distancia = 2
 
 # Determinar el precio del vuelo basado en la distancia y el día de la semana
@@ -77,16 +82,21 @@ elif distancia == 2:
         precio_final = 213000
 
 # Selección de asiento
-asiento = input("El proceso está casi terminado, seleccione su asiento de preferencia (Ventana, Intermedio, Pasillo, Aleatorio): ")
+while True:
+    asiento = input("El proceso está casi terminado, seleccione su asiento de preferencia (Ventana: V, Intermedio: I, Pasillo: P, Aleatorio: A): ").upper()
+    if asiento not in asientos:
+        print("Ingrese una opción válida")
+    else:
+        break
 
-if asiento == "Ventana":
+if asiento == "V":
     asiento = "A"
-elif asiento == "Intermedio":
+elif asiento == "I":
     asiento = "E"
-elif asiento == "Pasillo":
+elif asiento == "P":
     asiento = "C"
-elif asiento == "Aleatorio":
+elif asiento == "A":
     asiento = "F"
 
 system("cls" if system == "nt" else "clear")
-print(f"Su reserva ha sido confirmada.\nEl vuelo desde {origen} hacia {destino} ha sido confirmado con éxito, para el día {dia} {fecha_ingresada}\nVuelo: {vuelo} Pasajero: {nombre} Asiento: {fila}{asiento} por un precio total de ${precio_final}")
+print(f"Su reserva ha sido confirmada.\nEl vuelo desde {origen} hacia {destino} ha sido confirmado con éxito, para el día {dia} {fecha_ingresada}\nVuelo: {vuelo} Pasajero: {nombre} {apellido} Asiento: {fila}{asiento} por un precio total de ${precio_final}")
