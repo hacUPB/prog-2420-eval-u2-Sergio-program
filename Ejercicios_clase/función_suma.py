@@ -15,4 +15,5 @@ acum = 0
 for elemento in lista:
     acum += elemento
 
-print(f"Usando el bucle for la suma es: {acum}")
+print(f"Usando el bucle for la suma es: {acum}") 
+
